@@ -1,0 +1,66 @@
+DEBUG: True
+EXP_NAME: 'AberAwareDFF-AiF-stack8-480x640-ks11'
+pred_name: 'depth'
+
+train:
+  lens: './lenses/rf50mm/lens_web.json'
+  psfnet_path: './ckpt/rf50mm/DPPSFNet512x768_ks21.pkl'
+
+
+  dataset: 
+  ours_pre_pretrained: 
+  ours_deblur_pretrained: 
+  ours_pretrained: 
+
+
+test:
+  lens: './lenses/rf50mm/lens_web.json'
+  psfnet_path: './ckpt/rf50mm/DPPSFNet512x768_ks21.pkl'
+
+  dataset: 
+
+# Input focal stack [B, S, C, H, W]
+bs: 1 # batch size
+n_stack: 1  # focal stack size
+res: !!python/tuple [512, 768]  # input image resolution
+
+ks: 21 # PSF kernel size
+lr: 2e-4  # DFF network learning rate
+epochs: 100  # DFF network training epochs
+
+# train
+train_aif_dir: '/home/dataset/data/PAAT/dataset/MiddlePort3D/MatterPort3D_post'
+train_depth_dir: '/home/dataset/data/PAAT/dataset/MiddlePort3D/MatterPort3D_post'
+test_aif_dir: '/home/dataset/data/PAAT/dataset/Matterport3D/test/aif'
+test_depth_dir: '/home/dataset/data/PAAT/dataset/Matterport3D/test/depth'
+NYUdata_train: '../RGBD_Dataset/NYUData/nyu2_train-scale-25p5'
+Ours_outdoors: './dataset/dataset_Ours/outdoors'
+Ours_indoors: './dataset/dataset_Ours/indoors'
+FlyingThings3D_train: '../RGBD_Dataset/FlyingThings3D_FS/train/focal_stack'
+ICCP2020: './dataset/ICCP2020_DP_dataset/train'
+LearningDP_train: '../RGBD_Dataset/LearningDP/train'
+DP5K_train: '../RGBD_Dataset/DP5K/train'
+QPD2K_train: '../RGBD_Dataset/QPD2K/train'
+# valid
+Middlebury3D: '/home/dataset/data/PAAT/dataset/MiddlePort3D/MatterPort3D_post'
+Middlebury_FS: './dataset/Middlebury_FS/focal_stack'
+Middlebury2014_val: './dataset/Middlebury2014' 
+Middlebury2021_val: '/home/dataset/data/PAAT/dataset/Middlebury2021'
+FlyingThings3D_train: '../RGBD_Dataset/FlyingThings3D_FS/train/focal_stack'
+FlyingThings3D_test: '../RGBD_Dataset/FlyingThings3D_FS/val/focal_stack'
+NYUdata_test: '../RGBD_Dataset/NYUData/nyu2_test-scale-25p5'
+Ours_outdoors: './dataset/dataset_Ours/outdoors'
+Ours_indoors: './dataset/dataset_Ours/indoors'
+ICCP2020: './dataset/ICCP2020_DP_dataset/test'
+LearningDP_test: '../RGBD_Dataset/LearningDP/test'
+DP5K_test: '../RGBD_Dataset/DP5K/test'
+QPD2K_test: '../RGBD_Dataset/QPD2K/test'
+
+
+# test
+real_box_test: "./canon_calib/dataset/Release_depth_bench/rgbd_test"
+real_flat_test: "./canon_calib/dataset/Release_flatset_bench/"
+real_box_sample: "./real_testset/boxs"
+real_flat_sample: "./real_testset/flats"
+Ours: './dataset/dataset_Ours/test'
+
